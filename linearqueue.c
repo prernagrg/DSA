@@ -1,30 +1,43 @@
 #include <stdio.h>
-#include <conio.h>
- #define N 5
- int queue [N];
- int rear = -1;
- int front = -1;
- void enqueue(int x){
-    if (rear == N-1){
-        printf("queue is full\n");
+#define N 5
+
+int queue[N];
+int front = -1;
+int rear = -1;
+
+void enqueue(int x){
+    if(rear == N-1){
+        printf("Overflow");
     }
     else if(front == -1 && rear == -1){
         front = rear = 0;
         queue[rear] = x;
-        printf("%d ");
     }
     else{
-        rear ++;
-        queue [rear] = x;
+        rear++;
+        queue[rear]= x;
     }
- }
+}
+void display() {
+    if (front == -1 && rear == -1) {
+        printf("Queue is empty!\n");
+    } else {
+        printf("Queue elements: ");
+        for (int i = front; i <= rear; i++) {
+            printf("%d ", queue[i]);
+        }
+        printf("\n");
+    }
+}
  void main(){
-    int n;
-    for(int i = 0; i<5; i++){
-        printf("Enter a mumber");
-    scanf("%d", &n);
+    int num;
+    for(int i = 0; i<N; i++){
+        printf("enter number %d:", i+1);
+        scanf("%d", &num);
+        enqueue(num);
     }
-    for(int i =0; i<5; i++){
-        printf("the numbers are %d" , n);
-    }
+
+    printf("Display after enqueueing");
+    display ();
+
  }
