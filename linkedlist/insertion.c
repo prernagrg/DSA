@@ -1,43 +1,68 @@
 #include <stdio.h>
+#include <stdlib.h>
 
+// Define the structure for a node
 struct Node {
     int data;
-    struct Node *next;
+    struct Node* next;
 };
 
-void insterAtBeginning(struct Node *head, int newData){
-    if(head == NULL){
-        printf("List is empty");
-    }
+// Function to insert a new node at the beginning
+void insertAtBeginning(struct Node** head) {
+    int value;
+    printf("Enter data to insert at beginning: ");
+    scanf("%d", &value);
 
-    struct Node *newNode = (struct Node *) malloc(sizeof(struct Node));
-    newNode->data = newData;
-    newNode->next = head;
+    // Create a new node
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
 
+    // Point new node to current head
+    newNode->next = *head;
+
+    // Update head to new node
+    *head = newNode;
 }
 
-void printList(struct Node *n){
-    while(n != NULL){
-        printf("%d ->", n->data);
-        n = n->next;
+// Function to display the linked list
+void displayList(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
     }
-    printf("NULL \n");
+
+    struct Node* temp = head;
+    printf("Linked List: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
 }
 
-int main(){
-    struct Node *head = (struct Node *)malloc(sizeof(struct Node));
-    struct Node *second = (struct Node *) malloc(sizeof(struct Node));
-    struct Node *third = (struct NOde *) malloc (sizeof(struct Node));
+int main() {
+    struct Node* head = NULL; // Initialize empty list
+    int choice;
 
-    head->data = 10;
-    head -> next =second;
+    do {
+        printf("\n1. Insert at Beginning\n2. Display List\n3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-    second-> data = 20;
-    second->next = third;
+        switch (choice) {
+            case 1:
+                insertAtBeginning(&head);
+                break;
+            case 2:
+                displayList(head);
+                break;
+            case 3:
+                printf("Exiting program...\n");
+                break;
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    } while (choice != 3);
 
-    third->data = 30;
-    third->next = NULL;
-
-    printf("Original linked list");
-    printList(head);
+    return 0;
 }
