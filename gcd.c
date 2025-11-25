@@ -1,17 +1,25 @@
 #include <stdio.h>
 
-int gcd(int a, int b) {
-    if(b == 0)
+int gcd(int a, int b)
+{
+    if (b == 0)
+    {
         return a;
+    }
     else
+    {
         return gcd(b, a % b);
+    }
 }
 
-int main() {
+int main()
+{
     int a, b;
-    printf("Enter two numbers: ");
-    scanf("%d %d", &a, &b);
+    printf("Enter number 'a'");
+    scanf("%d", &a);
 
-    printf("GCD of %d and %d is %d\n", a, b, gcd(a, b));
-    return 0;
+    printf("Enter number 'b'");
+    scanf("%d", &b);
+
+    printf("The GCD of two number is %d", gcd(a, b));
 }
