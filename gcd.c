@@ -8,7 +8,7 @@ int gcd(int a, int b)
     }
     else
     {
-        return gcd(b, a % b);
+        return gcd(b, b % a);
     }
 }
 
