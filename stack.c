@@ -57,6 +57,7 @@
 #define MAXSIZE 10
 int top = -1;
 int stack[10];
+int data;
 
 int isFull()
 {
@@ -67,6 +68,33 @@ int isFull()
     else
     {
         return 0;
+    }
+}
+
+int isEmpty()
+{
+    if (top == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int pop()
+{
+    if (!isEmpty())
+    {
+        data = stack[top];
+        top = top - 1;
+        return data;
+    }
+    else
+    {
+        printf("stack is Empty");
+        return -1;
     }
 }
 
@@ -86,9 +114,9 @@ int push(int data)
 void display()
 {
     printf("Stack Elements\n");
-    for (int i = top; i >= 1; i--)
+    for (int i = top; i >= 0; i--)
     {
-        printf("%d->", stack[i]);
+        printf("%d\t", stack[i]);
     }
     printf("\t");
 }
@@ -96,12 +124,13 @@ int main()
 {
     int data;
     printf("Enter data\n");
-    for (int i = 0; i <= MAXSIZE; i++)
+    for (int i = 0; i < MAXSIZE; i++)
     {
         scanf("%d", &data);
         push(data);
     }
 
+    printf("Popped element: %d\n", pop());
     display();
 
     return 0;
